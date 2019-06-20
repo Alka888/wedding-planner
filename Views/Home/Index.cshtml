@@ -1,0 +1,36 @@
+﻿@using wedding_planner.Models
+@model User
+
+<h2>Register</h2>
+<div id="wrapper">
+	<form asp-action="register" asp-controller="Home" method="post">
+		<div class="five columns">
+			<table>
+				<tr>
+					<td><label asp-for="FirstName"></label><br><span asp-validation-for="FirstName"></span></td>
+					<td><input asp-for="FirstName"><br></td>
+				</tr>
+				<tr>
+					<td><label asp-for="LastName"></label><br><span asp-validation-for="LastName"></span></td>
+					<td><input asp-for="LastName"><br></td>
+				</tr>
+				<tr>
+					<td><label asp-for="Email"></label><br><span asp-validation-for="Email"></span></td>
+					<td><input asp-for="Email"></td>
+				</tr>
+				<tr>
+					<td><label asp-for="Password"></label><br><span asp-validation-for="Password"></span></td>
+					<td><input asp-for="Password"><br></td>
+				</tr>
+				<tr>
+					<td><label asp-for="Confirm"></label><br><span asp-validation-for="Confirm"></span></td>
+					<td><input asp-for="Confirm"><br></td>
+				</tr>
+			</table>
+		</div>
+		<button type="submit">Register</button>
+	</form>
+</div>
+
+<partial name="Login"/>
+

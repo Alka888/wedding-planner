@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+
+	@using wedding_planner.Models
+	@model Wedding
+
+	<div class="row">
+		<h1 class="eight column"></h1>
+		<a href="/Dashboard">Dashboard</a>
+		<a href="/Logout">Logout</a>
+	</div>
+	<h3>@ViewBag.CurrentWedding.Groom and @ViewBag.CurrentWedding.Bride Wedding</h3>
+	<h3>Date: @ViewBag.CurrentWedding.WeddingDate.ToString("MMM dd, yyyy")</h3>
+	@if(@ViewBag.CurrentWedding.Guests.Count > 0) 
+	{
+		<h3>Guests:</h3>
+			<ul>
+					@foreach(var guest in @ViewBag.CurrentWedding.Guests)
+					{
+					<li>@guest.User.FirstName @guest.User.LastName</li>
+					}
+			</ul>
+	}
+
+</body>
+
+</html>

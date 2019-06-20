@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	@using wedding_planner.Models
+	@model Wedding
+
+	<div class="row">
+		<h1 class="eight column">Plan Your Wedding</h1>
+		<a href="/Dashboard">Dashboard</a>
+		<a href="/Logout">Logout</a>
+	</div>
+	<div class="form-group">
+		<form asp-action="AddWedding" asp-controller="Home" method="post">
+			<div class="form-group">
+				<input type='hidden' asp-for='UserId' value='@ViewBag.UserId'>
+			</div>
+			<div class="form-group">
+				<span asp-validation-for="Groom"></span>
+				<label asp-for='Groom'>Wedder One</label><input asp-for="Groom">
+			</div>
+			<div class="form-group">
+				<span asp-validation-for="Bride"></span>
+				<label asp-for='Bride'>Wedder Two</label><input asp-for="Bride">
+			</div>
+			<div class="form-group">
+				<span asp-validation-for="WeddingDate"></span>
+				<label asp-for='WeddingDate'>Wedding Date</label><input type="date" asp-for="WeddingDate">
+			</div>
+			<div class="form-group">
+				<span asp-validation-for="Address"></span>
+				<label asp-for='Address'>Wed Address</label><input asp-for="Address"><br><br>
+				<button type="submit">Create</button>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

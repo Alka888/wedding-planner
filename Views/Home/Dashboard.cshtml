@@ -1,0 +1,65 @@
+@using wedding_planner.Models
+@model Wedding
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+
+<body>
+	<div class="row">
+		<h1 class="ten columns">Welcome to the Wedding Planner</h1>
+		<a href="/Logout">Logout</a>
+	</div>
+	<div class="nine columns">
+		<table class="table table-striped table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Wedding</th>
+					<th scope="col">Date</th>
+					<th scope="col">Guest</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+				<tbody>
+					@foreach(var wedding in ViewBag.AllWeddings)
+					{
+					<tr>
+						<td><a href="Wedding/@wedding.WeddingId"> @wedding.Groom and @wedding.Bride</a></td>
+						<td>@wedding.WeddingDate.ToString("MMM, dd, yyyy")</td>
+						<td>@wedding.Guests.Count</td>
+						@if(@ViewBag.id == @wedding.UserId){
+						<td><a href="/delete/@wedding.WeddingId">Delete</a></td>
+						}
+						else {
+						@if(@wedding.Guests.Count == 0) {
+						<td><a href="/rsvp/@wedding.WeddingId/@ViewBag.id">RSVP</a></td>
+						}
+						else {
+						int Count = 0;
+						@foreach(var guest in @wedding.Guests) {
+						if(@guest.User == @ViewBag.CurrentUser) {
+						Count = 1;
+						}
+						}
+						if(Count == 1) {
+						<td><a href="/cancel/@wedding.WeddingId">UN RSVP</a></td>
+						}
+						else {
+						<td><a href="/rsvp/@wedding.WeddingId/@ViewBag.id">RSVP</a></td><br>
+						}
+						}
+						}
+					</tr>
+					}
+				</tbody>
+			</table>
+			<button><a href="Newwedding">Add a Wedding</a></button>
+	</div>
+</body>
+
+</html>
